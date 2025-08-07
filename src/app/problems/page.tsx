@@ -103,10 +103,10 @@ export default function ProblemsPage() {
 
       <SignedIn>
         <div className="flex items-center justify-between space-y-2">
-          <h2 className="text-3xl font-bold tracking-tight">Problems</h2>
+          <h2 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">Problems</h2>
           <div className="flex items-center space-x-2">
             <AddProblemDialog>
-              <Button>
+              <Button className="shadow-xl">
                 <Plus className="mr-2 h-4 w-4" />
                 Add Problem
               </Button>
@@ -115,24 +115,29 @@ export default function ProblemsPage() {
         </div>
 
         {/* Search and Filter */}
-        <Card>
+        <Card className="shadow-xl">
           <CardHeader>
-            <CardTitle>Search & Filter</CardTitle>
-            <CardDescription>Find problems in your collection</CardDescription>
+            <CardTitle className="text-xl flex items-center gap-3">
+              <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
+                <Search className="h-4 w-4 text-primary" />
+              </div>
+              Search & Filter
+            </CardTitle>
+            <CardDescription className="text-base">Find problems in your collection</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex flex-col md:flex-row gap-4">
               <div className="flex-1 relative">
-                <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-                <Input placeholder="Search problems..." className="pl-8" />
+                <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                <Input placeholder="Search problems..." className="pl-10 h-12 rounded-xl border-2 focus:border-primary/50" />
               </div>
-              <select className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:w-[180px]">
+              <select className="flex h-12 w-full items-center justify-between rounded-xl border-2 border-input bg-background px-4 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:w-[180px]">
                 <option value="">All Difficulties</option>
                 <option value="easy">Easy</option>
                 <option value="medium">Medium</option>
                 <option value="hard">Hard</option>
               </select>
-              <select className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:w-[180px]">
+              <select className="flex h-12 w-full items-center justify-between rounded-xl border-2 border-input bg-background px-4 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:w-[180px]">
                 <option value="">All Platforms</option>
                 <option value="leetcode">LeetCode</option>
                 <option value="hackerrank">HackerRank</option>
@@ -175,13 +180,13 @@ export default function ProblemsPage() {
         ) : (
           <div className="grid gap-4">
             {problems.map((problem) => (
-              <Card key={problem.id} className="hover:shadow-md transition-shadow">
-                <CardContent className="p-6">
+              <Card key={problem.id} className="hover:shadow-2xl transition-all duration-300 hover:scale-[1.01] border-2 hover:border-primary/20">
+                <CardContent className="p-8">
                   <div className="flex items-start justify-between">
-                    <div className="flex-1 space-y-3">
-                      <div className="flex items-center gap-3">
-                        <h3 className="text-lg font-semibold">
-                          <Link href={`/problems/${problem.id}`} className="hover:text-primary transition-colors">
+                    <div className="flex-1 space-y-4">
+                      <div className="flex items-center gap-4">
+                        <h3 className="text-xl font-bold">
+                          <Link href={`/problems/${problem.id}`} className="hover:text-primary transition-colors bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent hover:from-primary hover:to-primary/80">
                             {problem.title}
                           </Link>
                         </h3>
@@ -190,36 +195,36 @@ export default function ProblemsPage() {
                             href={problem.url} 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="hover:underline flex items-center gap-1 text-sm text-muted-foreground"
+                            className="hover:text-primary transition-colors flex items-center gap-1 text-sm text-muted-foreground p-2 rounded-lg hover:bg-accent/50"
                           >
                             <ExternalLink className="h-4 w-4" />
                           </a>
                         )}
-                        <Badge variant={getDifficultyVariant(problem.difficulty) as "default" | "secondary" | "destructive" | "outline"}>
+                        <Badge variant={getDifficultyVariant(problem.difficulty) as "default" | "secondary" | "destructive" | "outline"} className="px-3 py-1 text-xs font-semibold">
                           {problem.difficulty}
                         </Badge>
                       </div>
                       
                       {problem.description && (
-                        <p className="text-sm text-muted-foreground">{problem.description}</p>
+                        <p className="text-muted-foreground leading-relaxed">{problem.description}</p>
                       )}
                       
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-6 text-sm text-muted-foreground">
                         {problem.tags && problem.tags.length > 0 && (
-                          <div className="flex gap-1">
+                          <div className="flex gap-2">
                             {problem.tags.map((tag, index) => (
-                              <Badge key={index} variant="outline" className="text-xs">
+                              <Badge key={index} variant="outline" className="text-xs px-2 py-1">
                                 {tag}
                               </Badge>
                             ))}
                           </div>
                         )}
-                        <span>{new Date(problem.createdAt).toLocaleDateString()}</span>
+                        <span className="font-medium">{new Date(problem.createdAt).toLocaleDateString()}</span>
                       </div>
                     </div>
                     
-                    <div className="ml-6 flex items-center gap-2">
-                      <Button asChild variant="outline" size="sm">
+                    <div className="ml-8 flex items-center gap-3">
+                      <Button asChild variant="outline" size="sm" className="shadow-md">
                         <Link href={`/problems/${problem.id}`}>
                           View Details
                         </Link>
@@ -232,6 +237,7 @@ export default function ProblemsPage() {
                         <Button 
                           variant="destructive" 
                           size="sm"
+                          className="shadow-md"
                         >
                           <Trash2 className="h-4 w-4" />
                         </Button>
