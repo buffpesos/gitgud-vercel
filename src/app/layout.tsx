@@ -9,7 +9,7 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import Link from "next/link";
-import { Code } from "lucide-react";
+
 import "./globals.css";
 
 const geistSans = Geist({
