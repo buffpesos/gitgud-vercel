@@ -27,6 +27,9 @@ type Problem = {
 export default function ProblemsPage() {
   const [problems, setProblems] = useState<Problem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [difficultyFilter, setDifficultyFilter] = useState("");
+  const [platformFilter, setPlatformFilter] = useState("");
 
   useEffect(() => {
     uiLogger.debug("ProblemsPage component mounted, fetching problems");
@@ -86,6 +89,18 @@ export default function ProblemsPage() {
         return "outline";
     }
   };
+
+  const filteredProblems = problems.filter((problem) => {
+    const matchesSearch = searchTerm === "" || 
+      problem.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (problem.description?.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (problem.tags?.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase())));
+    
+    const matchesDifficulty = difficultyFilter === "" || problem.difficulty === difficultyFilter;
+    const matchesPlatform = platformFilter === "" || problem.platform.toLowerCase() === platformFilter.toLowerCase();
+    
+    return matchesSearch && matchesDifficulty && matchesPlatform;
+  });
   return (
     <div className="flex-1 space-y-4 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
       <SignedOut>
@@ -129,15 +144,28 @@ export default function ProblemsPage() {
             <div className="flex flex-col md:flex-row gap-4">
               <div className="flex-1 relative">
                 <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                <Input placeholder="Search problems..." className="pl-10 h-12 rounded-xl border-2 focus:border-primary/50" />
+                <Input 
+                  placeholder="Search problems..." 
+                  className="pl-10 h-12 rounded-xl border-2 focus:border-primary/50" 
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
               </div>
-              <select className="flex h-12 w-full items-center justify-between rounded-xl border-2 border-input bg-background px-4 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:w-[180px]">
+              <select 
+                className="flex h-12 w-full items-center justify-between rounded-xl border-2 border-input bg-background px-4 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:w-[180px]"
+                value={difficultyFilter}
+                onChange={(e) => setDifficultyFilter(e.target.value)}
+              >
                 <option value="">All Difficulties</option>
                 <option value="easy">Easy</option>
                 <option value="medium">Medium</option>
                 <option value="hard">Hard</option>
               </select>
-              <select className="flex h-12 w-full items-center justify-between rounded-xl border-2 border-input bg-background px-4 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:w-[180px]">
+              <select 
+                className="flex h-12 w-full items-center justify-between rounded-xl border-2 border-input bg-background px-4 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:w-[180px]"
+                value={platformFilter}
+                onChange={(e) => setPlatformFilter(e.target.value)}
+              >
                 <option value="">All Platforms</option>
                 <option value="leetcode">LeetCode</option>
                 <option value="hackerrank">HackerRank</option>
@@ -154,6 +182,23 @@ export default function ProblemsPage() {
               <div className="text-center space-y-2">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
                 <p className="text-sm text-muted-foreground">Loading problems...</p>
+              </div>
+            </CardContent>
+          </Card>
+        ) : filteredProblems.length === 0 && problems.length > 0 ? (
+          <Card>
+            <CardContent className="flex items-center justify-center py-12">
+              <div className="text-center space-y-4">
+                <Search className="h-16 w-16 text-muted-foreground mx-auto" />
+                <div className="space-y-2">
+                  <h3 className="text-lg font-semibold">No problems found</h3>
+                  <p className="text-sm text-muted-foreground max-w-sm mx-auto">
+                    Try adjusting your search terms or filters to find what you&apos;re looking for.
+                  </p>
+                </div>
+                <Button onClick={() => { setSearchTerm(""); setDifficultyFilter(""); setPlatformFilter(""); }} variant="outline">
+                  Clear Filters
+                </Button>
               </div>
             </CardContent>
           </Card>
@@ -179,7 +224,7 @@ export default function ProblemsPage() {
           </Card>
         ) : (
           <div className="grid gap-4">
-            {problems.map((problem) => (
+            {filteredProblems.map((problem) => (
               <Card key={problem.id} className="hover:shadow-2xl transition-all duration-300 hover:scale-[1.01] border-2 hover:border-primary/20">
                 <CardContent className="p-8">
                   <div className="flex items-start justify-between">
