@@ -74,19 +74,17 @@ export default function Home() {
 
       <SignedIn>
         {/* Dashboard Header */}
-        <div className="relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/10 to-secondary/5 rounded-3xl"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,oklch(0.7_0.15_280_/_0.1)_0px,transparent_50%)] rounded-3xl"></div>
-          <div className="relative flex items-center justify-between p-10">
-            <div className="space-y-3">
-              <h2 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">Welcome back!</h2>
-              <p className="text-muted-foreground text-lg">
+        <div className="bg-card rounded-lg border border-border/50 shadow-sm p-8">
+          <div className="flex items-center justify-between">
+            <div className="space-y-2">
+              <h2 className="text-3xl font-bold tracking-tight">Welcome back!</h2>
+              <p className="text-muted-foreground">
                 Ready to tackle some coding challenges?
               </p>
             </div>
             <AddProblemDialog>
-              <Button size="lg" className="shadow-2xl">
-                <Plus className="mr-3 h-5 w-5" />
+              <Button size="lg">
+                <Plus className="mr-2 h-4 w-4" />
                 Add Problem
               </Button>
             </AddProblemDialog>
@@ -97,33 +95,31 @@ export default function Home() {
         <DashboardStats />
 
         {/* Quick Actions */}
-        <div className="grid gap-8 md:grid-cols-2">
-          <Card className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300">
+        <div className="grid gap-6 md:grid-cols-2">
+          <Card className="border border-border/50 shadow-sm hover:shadow-md hover:border-border transition-all duration-200">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-xl">
-                <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
-                  <Clock className="h-5 w-5 text-primary" />
-                </div>
+              <CardTitle className="flex items-center gap-2">
+                <Clock className="h-5 w-5 text-primary" />
                 Recent Activity
               </CardTitle>
-              <CardDescription className="text-base">
+              <CardDescription>
                 Your latest problem attempts and progress
               </CardDescription>
             </CardHeader>
-            <CardContent className="pl-2">
-              <div className="flex items-center justify-center h-[220px] text-center">
-                <div className="space-y-6">
-                  <div className="h-20 w-20 rounded-2xl bg-gradient-to-br from-primary via-primary/90 to-primary/80 flex items-center justify-center mx-auto shadow-xl">
-                    <BookOpen className="h-10 w-10 text-primary-foreground" />
+            <CardContent>
+              <div className="flex items-center justify-center h-48 text-center">
+                <div className="space-y-4">
+                  <div className="h-12 w-12 rounded-lg bg-muted flex items-center justify-center mx-auto">
+                    <BookOpen className="h-6 w-6 text-muted-foreground" />
                   </div>
-                  <div className="space-y-3">
-                    <p className="font-semibold text-lg">Ready to start your journey?</p>
-                    <p className="text-muted-foreground">
+                  <div className="space-y-2">
+                    <p className="font-medium">Ready to start your journey?</p>
+                    <p className="text-sm text-muted-foreground">
                       Add your first problem to begin tracking your progress
                     </p>
                   </div>
                   <AddProblemDialog>
-                    <Button className="shadow-lg">
+                    <Button size="sm">
                       <Plus className="mr-2 h-4 w-4" />
                       Add Your First Problem
                     </Button>
@@ -133,34 +129,32 @@ export default function Home() {
             </CardContent>
           </Card>
           
-          <Card className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300">
+          <Card className="border border-border/50 shadow-sm hover:shadow-md hover:border-border transition-all duration-200">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-xl">
-                <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
-                  <Zap className="h-5 w-5 text-primary" />
-                </div>
+              <CardTitle className="flex items-center gap-2">
+                <Zap className="h-5 w-5 text-primary" />
                 Quick Actions
               </CardTitle>
-              <CardDescription className="text-base">
+              <CardDescription>
                 Jump right into your coding practice
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-3">
               <AddProblemDialog>
-                <Button className="w-full justify-start h-14 text-left" variant="outline">
-                  <Plus className="mr-4 h-5 w-5" />
-                  <div>
-                    <div className="font-semibold">Add New Problem</div>
-                    <div className="text-sm text-muted-foreground">Start with a coding challenge</div>
+                <Button className="w-full justify-start h-12" variant="outline">
+                  <Plus className="mr-3 h-4 w-4" />
+                  <div className="text-left">
+                    <div className="font-medium">Add New Problem</div>
+                    <div className="text-xs text-muted-foreground">Start with a coding challenge</div>
                   </div>
                 </Button>
               </AddProblemDialog>
-              <Button asChild className="w-full justify-start h-14 text-left" variant="outline">
+              <Button asChild className="w-full justify-start h-12" variant="outline">
                 <Link href="/problems">
-                  <BookOpen className="mr-4 h-5 w-5" />
-                  <div>
-                    <div className="font-semibold">View All Problems</div>
-                    <div className="text-sm text-muted-foreground">Browse your collection</div>
+                  <BookOpen className="mr-3 h-4 w-4" />
+                  <div className="text-left">
+                    <div className="font-medium">View All Problems</div>
+                    <div className="text-xs text-muted-foreground">Browse your collection</div>
                   </div>
                 </Link>
               </Button>
