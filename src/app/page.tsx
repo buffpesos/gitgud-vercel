@@ -1,9 +1,10 @@
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
-import { Plus, BookOpen, Trophy, Clock, TrendingUp, Code, Zap } from "lucide-react";
+import { Plus, BookOpen, Trophy, Clock, Code, Zap } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { AddProblemDialog } from "@/components/add-problem-dialog";
+import { DashboardStats } from "@/components/dashboard-stats";
 
 
 export default function Home() {
@@ -93,59 +94,7 @@ export default function Home() {
         </div>
 
         {/* Stats Overview */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          <Card className="border-0 shadow-xl bg-gradient-to-br from-blue-50/80 to-blue-100/80 dark:from-blue-950/30 dark:to-blue-900/30 backdrop-blur-sm hover:shadow-2xl transition-all duration-300">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
-              <CardTitle className="text-sm font-semibold text-blue-700 dark:text-blue-300">Total Problems</CardTitle>
-              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg">
-                <BookOpen className="h-6 w-6 text-white" />
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="text-4xl font-bold text-blue-700 dark:text-blue-300 mb-1">0</div>
-              <p className="text-sm text-blue-600/80 dark:text-blue-400/80">Problems in your collection</p>
-            </CardContent>
-          </Card>
-          
-          <Card className="border-0 shadow-xl bg-gradient-to-br from-green-50/80 to-green-100/80 dark:from-green-950/30 dark:to-green-900/30 backdrop-blur-sm hover:shadow-2xl transition-all duration-300">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
-              <CardTitle className="text-sm font-semibold text-green-700 dark:text-green-300">Solved</CardTitle>
-              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center shadow-lg">
-                <Trophy className="h-6 w-6 text-white" />
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="text-4xl font-bold text-green-700 dark:text-green-300 mb-1">0</div>
-              <p className="text-sm text-green-600/80 dark:text-green-400/80">Successfully completed</p>
-            </CardContent>
-          </Card>
-          
-          <Card className="border-0 shadow-xl bg-gradient-to-br from-orange-50/80 to-orange-100/80 dark:from-orange-950/30 dark:to-orange-900/30 backdrop-blur-sm hover:shadow-2xl transition-all duration-300">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
-              <CardTitle className="text-sm font-semibold text-orange-700 dark:text-orange-300">In Progress</CardTitle>
-              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-lg">
-                <Clock className="h-6 w-6 text-white" />
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="text-4xl font-bold text-orange-700 dark:text-orange-300 mb-1">0</div>
-              <p className="text-sm text-orange-600/80 dark:text-orange-400/80">Currently working on</p>
-            </CardContent>
-          </Card>
-          
-          <Card className="border-0 shadow-xl bg-gradient-to-br from-purple-50/80 to-purple-100/80 dark:from-purple-950/30 dark:to-purple-900/30 backdrop-blur-sm hover:shadow-2xl transition-all duration-300">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
-              <CardTitle className="text-sm font-semibold text-purple-700 dark:text-purple-300">Success Rate</CardTitle>
-              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-lg">
-                <TrendingUp className="h-6 w-6 text-white" />
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="text-4xl font-bold text-purple-700 dark:text-purple-300 mb-1">0%</div>
-              <p className="text-sm text-purple-600/80 dark:text-purple-400/80">Overall success rate</p>
-            </CardContent>
-          </Card>
-        </div>
+        <DashboardStats />
 
         {/* Quick Actions */}
         <div className="grid gap-8 md:grid-cols-2">
