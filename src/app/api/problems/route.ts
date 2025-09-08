@@ -110,6 +110,7 @@ export async function POST(request: NextRequest) {
       : [];
     apiLogger.debug("Tags processed", { tagCount: processedTags.length });
 
+    
     // Create the problem
     apiLogger.debug("Creating new problem");
     const [newProblem] = await db
