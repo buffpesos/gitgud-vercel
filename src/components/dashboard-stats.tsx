@@ -59,7 +59,7 @@ export function DashboardStats() {
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-      <Card className="border border-border/50 shadow-sm hover:shadow-md hover:border-border transition-all duration-200">
+      <Card className="border border-border/50 shadow-sm hover:shadow-lg hover:border-border hover:-translate-y-1 transition-all duration-300 cursor-pointer">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
           <CardTitle className="text-sm font-medium text-muted-foreground">Total Problems</CardTitle>
           <div className="h-8 w-8 rounded-lg bg-muted flex items-center justify-center">
@@ -72,7 +72,7 @@ export function DashboardStats() {
         </CardContent>
       </Card>
       
-      <Card className="border border-border/50 shadow-sm hover:shadow-md hover:border-border transition-all duration-200">
+      <Card className="border border-border/50 shadow-sm hover:shadow-lg hover:border-border hover:-translate-y-1 transition-all duration-300 cursor-pointer">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
           <CardTitle className="text-sm font-medium text-muted-foreground">Solved</CardTitle>
           <div className="h-8 w-8 rounded-lg bg-muted flex items-center justify-center">
@@ -85,7 +85,7 @@ export function DashboardStats() {
         </CardContent>
       </Card>
       
-      <Card className="border border-border/50 shadow-sm hover:shadow-md hover:border-border transition-all duration-200">
+      <Card className="border border-border/50 shadow-sm hover:shadow-lg hover:border-border hover:-translate-y-1 transition-all duration-300 cursor-pointer">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
           <CardTitle className="text-sm font-medium text-muted-foreground">In Progress</CardTitle>
           <div className="h-8 w-8 rounded-lg bg-muted flex items-center justify-center">
@@ -98,7 +98,7 @@ export function DashboardStats() {
         </CardContent>
       </Card>
       
-      <Card className="border border-border/50 shadow-sm hover:shadow-md hover:border-border transition-all duration-200">
+      <Card className="border border-border/50 shadow-sm hover:shadow-lg hover:border-border hover:-translate-y-1 transition-all duration-300 cursor-pointer">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
           <CardTitle className="text-sm font-medium text-muted-foreground">Success Rate</CardTitle>
           <div className="h-8 w-8 rounded-lg bg-muted flex items-center justify-center">
