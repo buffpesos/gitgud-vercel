@@ -39,48 +39,50 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-background text-foreground`}
         >
-          <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60">
+          <header className="sticky top-0 z-50 w-full border-b-4 border-black dark:border-white bg-primary">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="flex h-16 items-center justify-between">
+              <div className="flex h-20 items-center justify-between">
                 <div className="flex items-center space-x-8">
-                  <Link href="/" className="flex items-center space-x-2 group">
-                    <div className="h-8 w-8 rounded-xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-200 group-hover:scale-105">
-                      <span className="text-primary-foreground font-bold text-sm">G</span>
+                  <Link href="/" className="flex items-center space-x-3 group">
+                    <div className="h-12 w-12 border-4 border-black dark:border-white bg-black dark:bg-white flex items-center justify-center brutal-shadow">
+                      <span className="text-white dark:text-black font-black text-xl">G</span>
                     </div>
-                    <span className="font-bold text-xl bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">GitGud</span>
+                    <span className="font-black text-3xl text-black dark:text-white uppercase tracking-tighter">GitGud</span>
                   </Link>
-                  <nav className="hidden md:flex items-center space-x-1 text-sm font-medium">
+                  <nav className="hidden md:flex items-center space-x-2 text-sm font-black">
                     <SignedIn>
                       <Link
                         href="/"
-                        className="px-4 py-2 rounded-lg transition-all duration-200 hover:bg-accent/80 hover:text-accent-foreground text-foreground/70 hover:text-foreground"
+                        className="px-4 py-2 border-2 border-black dark:border-white brutal-shadow-sm bg-white dark:bg-black text-black dark:text-white transition-all duration-150 hover:translate-x-0.5 hover:translate-y-0.5 uppercase tracking-tight"
                       >
                         Dashboard
                       </Link>
                       <Link
                         href="/problems"
-                        className="px-4 py-2 rounded-lg transition-all duration-200 hover:bg-accent/80 hover:text-accent-foreground text-foreground/70 hover:text-foreground"
+                        className="px-4 py-2 border-2 border-black dark:border-white brutal-shadow-sm bg-white dark:bg-black text-black dark:text-white transition-all duration-150 hover:translate-x-0.5 hover:translate-y-0.5 uppercase tracking-tight"
                       >
                         Problems
                       </Link>
                     </SignedIn>
                   </nav>
                 </div>
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-3">
                   <SignedOut>
                     <SignInButton>
-                      <Button variant="ghost" size="sm">
+                      <Button variant="outline" size="sm">
                         Sign In
                       </Button>
                     </SignInButton>
                     <SignUpButton>
-                      <Button size="sm">
+                      <Button variant="secondary" size="sm">
                         Sign Up
                       </Button>
                     </SignUpButton>
                   </SignedOut>
                   <SignedIn>
-                    <UserButton />
+                    <div className="border-4 border-black dark:border-white brutal-shadow p-1 bg-white dark:bg-black">
+                      <UserButton />
+                    </div>
                   </SignedIn>
                 </div>
               </div>

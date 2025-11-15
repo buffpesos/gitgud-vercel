@@ -5,18 +5,18 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const badgeVariants = cva(
-  "inline-flex items-center justify-center rounded-lg border px-3 py-1 text-xs font-semibold w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-all duration-200 overflow-hidden shadow-sm hover:shadow-md",
+  "inline-flex items-center justify-center border-3 border-black dark:border-white px-3 py-1.5 text-xs font-black uppercase tracking-tight w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none brutal-shadow-sm transition-all duration-150",
   {
     variants: {
       variant: {
         default:
-          "border-transparent bg-gradient-to-r from-primary to-primary/90 text-primary-foreground [a&]:hover:from-primary/90 [a&]:hover:to-primary/80 shadow-lg",
+          "bg-primary text-primary-foreground",
         secondary:
-          "border-transparent bg-gradient-to-r from-secondary to-secondary/90 text-secondary-foreground [a&]:hover:from-secondary/90 [a&]:hover:to-secondary/80",
+          "bg-secondary text-secondary-foreground",
         destructive:
-          "border-transparent bg-gradient-to-r from-destructive to-destructive/90 text-white [a&]:hover:from-destructive/90 [a&]:hover:to-destructive/80 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 shadow-lg",
+          "bg-destructive text-destructive-foreground",
         outline:
-          "text-foreground border-border/50 bg-background/80 backdrop-blur-sm [a&]:hover:bg-accent [a&]:hover:text-accent-foreground [a&]:hover:border-border",
+          "text-foreground border-black dark:border-white bg-background",
       },
     },
     defaultVariants: {

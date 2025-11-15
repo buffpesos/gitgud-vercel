@@ -42,14 +42,14 @@ export function DashboardStats() {
     return (
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {[...Array(4)].map((_, i) => (
-          <Card key={i} className="border border-border/50 shadow-sm">
+          <Card key={i}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
-              <div className="h-4 w-20 bg-muted animate-pulse rounded"></div>
-              <div className="h-8 w-8 bg-muted animate-pulse rounded-lg"></div>
+              <div className="h-4 w-20 bg-muted animate-pulse"></div>
+              <div className="h-8 w-8 bg-muted animate-pulse"></div>
             </CardHeader>
             <CardContent>
-              <div className="h-8 w-12 bg-muted animate-pulse rounded mb-1"></div>
-              <div className="h-3 w-32 bg-muted animate-pulse rounded"></div>
+              <div className="h-8 w-12 bg-muted animate-pulse mb-1"></div>
+              <div className="h-3 w-32 bg-muted animate-pulse"></div>
             </CardContent>
           </Card>
         ))}
@@ -59,55 +59,55 @@ export function DashboardStats() {
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-      <Card className="border border-border/50 shadow-sm hover:shadow-lg hover:border-border hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+      <Card className="bg-primary brutal-hover cursor-pointer">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
-          <CardTitle className="text-sm font-medium text-muted-foreground">Total Problems</CardTitle>
-          <div className="h-8 w-8 rounded-lg bg-muted flex items-center justify-center">
-            <BookOpen className="h-4 w-4 text-muted-foreground" />
+          <CardTitle className="text-xs font-black uppercase">Total Problems</CardTitle>
+          <div className="h-10 w-10 border-2 border-black dark:border-white bg-black dark:bg-white flex items-center justify-center">
+            <BookOpen className="h-5 w-5 text-white dark:text-black" />
           </div>
         </CardHeader>
         <CardContent>
-          <div className="text-3xl font-bold mb-1">{stats.totalProblems}</div>
-          <p className="text-sm text-muted-foreground">Problems in your collection</p>
+          <div className="text-5xl font-black mb-1">{stats.totalProblems}</div>
+          <p className="text-xs font-bold uppercase">In Collection</p>
         </CardContent>
       </Card>
-      
-      <Card className="border border-border/50 shadow-sm hover:shadow-lg hover:border-border hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+
+      <Card className="bg-secondary brutal-hover cursor-pointer">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
-          <CardTitle className="text-sm font-medium text-muted-foreground">Solved</CardTitle>
-          <div className="h-8 w-8 rounded-lg bg-muted flex items-center justify-center">
-            <Trophy className="h-4 w-4 text-muted-foreground" />
+          <CardTitle className="text-xs font-black uppercase">Solved</CardTitle>
+          <div className="h-10 w-10 border-2 border-black dark:border-white bg-black dark:bg-white flex items-center justify-center">
+            <Trophy className="h-5 w-5 text-white dark:text-black" />
           </div>
         </CardHeader>
         <CardContent>
-          <div className="text-3xl font-bold mb-1">{stats.solved}</div>
-          <p className="text-sm text-muted-foreground">Successfully completed</p>
+          <div className="text-5xl font-black mb-1">{stats.solved}</div>
+          <p className="text-xs font-bold uppercase">Completed</p>
         </CardContent>
       </Card>
-      
-      <Card className="border border-border/50 shadow-sm hover:shadow-lg hover:border-border hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+
+      <Card className="bg-accent brutal-hover cursor-pointer">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
-          <CardTitle className="text-sm font-medium text-muted-foreground">In Progress</CardTitle>
-          <div className="h-8 w-8 rounded-lg bg-muted flex items-center justify-center">
-            <Clock className="h-4 w-4 text-muted-foreground" />
+          <CardTitle className="text-xs font-black uppercase">In Progress</CardTitle>
+          <div className="h-10 w-10 border-2 border-black dark:border-white bg-black dark:bg-white flex items-center justify-center">
+            <Clock className="h-5 w-5 text-white dark:text-black" />
           </div>
         </CardHeader>
         <CardContent>
-          <div className="text-3xl font-bold mb-1">{stats.inProgress}</div>
-          <p className="text-sm text-muted-foreground">Currently working on</p>
+          <div className="text-5xl font-black mb-1">{stats.inProgress}</div>
+          <p className="text-xs font-bold uppercase">Working On</p>
         </CardContent>
       </Card>
-      
-      <Card className="border border-border/50 shadow-sm hover:shadow-lg hover:border-border hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+
+      <Card className="bg-destructive brutal-hover cursor-pointer">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
-          <CardTitle className="text-sm font-medium text-muted-foreground">Success Rate</CardTitle>
-          <div className="h-8 w-8 rounded-lg bg-muted flex items-center justify-center">
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
+          <CardTitle className="text-xs font-black uppercase">Success Rate</CardTitle>
+          <div className="h-10 w-10 border-2 border-black dark:border-white bg-black dark:bg-white flex items-center justify-center">
+            <TrendingUp className="h-5 w-5 text-white dark:text-black" />
           </div>
         </CardHeader>
         <CardContent>
-          <div className="text-3xl font-bold mb-1">{stats.successRate}%</div>
-          <p className="text-sm text-muted-foreground">Overall success rate</p>
+          <div className="text-5xl font-black mb-1">{stats.successRate}%</div>
+          <p className="text-xs font-bold uppercase">Success</p>
         </CardContent>
       </Card>
     </div>
