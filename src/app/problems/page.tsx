@@ -35,8 +35,8 @@ export default function ProblemsPage() {
   const [problems, setProblems] = useState<Problem[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
-  const [difficultyFilter, setDifficultyFilter] = useState("");
-  const [platformFilter, setPlatformFilter] = useState("");
+  const [difficultyFilter, setDifficultyFilter] = useState("all");
+  const [platformFilter, setPlatformFilter] = useState("all");
 
   useEffect(() => {
     uiLogger.debug("ProblemsPage component mounted, fetching problems");
@@ -98,14 +98,14 @@ export default function ProblemsPage() {
   };
 
   const filteredProblems = problems.filter((problem) => {
-    const matchesSearch = searchTerm === "" || 
+    const matchesSearch = searchTerm === "" ||
       problem.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       (problem.description?.toLowerCase().includes(searchTerm.toLowerCase())) ||
       (problem.tags?.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase())));
-    
-    const matchesDifficulty = difficultyFilter === "" || problem.difficulty === difficultyFilter;
-    const matchesPlatform = platformFilter === "" || problem.platform.toLowerCase() === platformFilter.toLowerCase();
-    
+
+    const matchesDifficulty = difficultyFilter === "all" || problem.difficulty === difficultyFilter;
+    const matchesPlatform = platformFilter === "all" || problem.platform.toLowerCase() === platformFilter.toLowerCase();
+
     return matchesSearch && matchesDifficulty && matchesPlatform;
   });
   return (
@@ -159,7 +159,7 @@ export default function ProblemsPage() {
                   <SelectValue placeholder="All Difficulties" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Difficulties</SelectItem>
+                  <SelectItem value="all">All Difficulties</SelectItem>
                   <SelectItem value="easy">Easy</SelectItem>
                   <SelectItem value="medium">Medium</SelectItem>
                   <SelectItem value="hard">Hard</SelectItem>
@@ -170,7 +170,7 @@ export default function ProblemsPage() {
                   <SelectValue placeholder="All Platforms" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Platforms</SelectItem>
+                  <SelectItem value="all">All Platforms</SelectItem>
                   <SelectItem value="leetcode">LeetCode</SelectItem>
                   <SelectItem value="hackerrank">HackerRank</SelectItem>
                   <SelectItem value="codewars">CodeWars</SelectItem>
@@ -201,7 +201,7 @@ export default function ProblemsPage() {
                     Try adjusting your search terms or filters to find what you&apos;re looking for.
                   </p>
                 </div>
-                <Button onClick={() => { setSearchTerm(""); setDifficultyFilter(""); setPlatformFilter(""); }} variant="outline">
+                <Button onClick={() => { setSearchTerm(""); setDifficultyFilter("all"); setPlatformFilter("all"); }} variant="outline">
                   Clear Filters
                 </Button>
               </div>
