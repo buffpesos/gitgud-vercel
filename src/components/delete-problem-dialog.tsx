@@ -66,26 +66,26 @@ export function DeleteProblemDialog({
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "solved":
-        return <CheckCircle2 className="h-4 w-4 text-green-600" />;
+        return <CheckCircle2 className="h-4 w-4" />;
       case "partial":
-        return <AlertCircle className="h-4 w-4 text-yellow-600" />;
+        return <AlertCircle className="h-4 w-4" />;
       case "failed":
-        return <XCircle className="h-4 w-4 text-red-600" />;
+        return <XCircle className="h-4 w-4" />;
       default:
         return null;
     }
   };
 
-  const getStatusColor = (status: string) => {
+  const getStatusVariant = (status: string): "default" | "secondary" | "destructive" | "outline" => {
     switch (status) {
       case "solved":
-        return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300";
+        return "default";
       case "partial":
-        return "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300";
+        return "secondary";
       case "failed":
-        return "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300";
+        return "destructive";
       default:
-        return "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300";
+        return "outline";
     }
   };
 
@@ -117,7 +117,7 @@ export function DeleteProblemDialog({
                   <div key={attempt.id} className="flex items-center justify-between text-sm">
                     <div className="flex items-center gap-2">
                       {getStatusIcon(attempt.status)}
-                      <Badge className={getStatusColor(attempt.status)} variant="secondary">
+                      <Badge variant={getStatusVariant(attempt.status)}>
                         {attempt.status.charAt(0).toUpperCase() + attempt.status.slice(1)}
                       </Badge>
                       {attempt.timeTaken && (

@@ -158,10 +158,10 @@ export default function RecordAttemptPage() {
   if (loading) {
     return (
       <div className="flex-1 space-y-4 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 rounded mb-4"></div>
-          <div className="h-32 bg-gray-200 rounded mb-4"></div>
-          <div className="h-64 bg-gray-200 rounded"></div>
+        <div className="animate-pulse space-y-4">
+          <div className="h-8 bg-muted rounded"></div>
+          <div className="h-32 bg-muted rounded"></div>
+          <div className="h-64 bg-muted rounded"></div>
         </div>
       </div>
     );
@@ -353,7 +353,7 @@ export default function RecordAttemptPage() {
                   />
                   <div className="flex justify-between text-sm text-muted-foreground">
                     <span>Document your thought process, challenges faced, and any insights gained</span>
-                    <span className={formData.notes.length > 450 ? "text-orange-600 dark:text-orange-400" : ""}>
+                    <span className={formData.notes.length > 450 ? "text-destructive" : ""}>
                       {formData.notes.length}/500
                     </span>
                   </div>

@@ -253,12 +253,6 @@ export function CodeEditor({
           formatOnType: true,
         }}
       />
-      <style jsx global>{`
-        .editor-placeholder {
-          color: #9ca3af;
-          font-style: italic;
-        }
-      `}</style>
     </div>
   );
 }

@@ -8,6 +8,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { AddProblemDialog } from "@/components/add-problem-dialog";
 import { DeleteProblemDialog } from "@/components/delete-problem-dialog";
 import { uiLogger } from "@/lib/logger";
@@ -140,33 +147,35 @@ export default function ProblemsPage() {
             <div className="flex flex-col md:flex-row gap-4">
               <div className="flex-1 relative">
                 <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                <Input 
-                  placeholder="Search problems..." 
-                  className="pl-10" 
+                <Input
+                  placeholder="Search problems..."
+                  className="pl-10"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
-              <select 
-                className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:w-[180px]"
-                value={difficultyFilter}
-                onChange={(e) => setDifficultyFilter(e.target.value)}
-              >
-                <option value="">All Difficulties</option>
-                <option value="easy">Easy</option>
-                <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
-              </select>
-              <select 
-                className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:w-[180px]"
-                value={platformFilter}
-                onChange={(e) => setPlatformFilter(e.target.value)}
-              >
-                <option value="">All Platforms</option>
-                <option value="leetcode">LeetCode</option>
-                <option value="hackerrank">HackerRank</option>
-                <option value="codewars">CodeWars</option>
-              </select>
+              <Select value={difficultyFilter} onValueChange={setDifficultyFilter}>
+                <SelectTrigger className="md:w-[180px]">
+                  <SelectValue placeholder="All Difficulties" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="">All Difficulties</SelectItem>
+                  <SelectItem value="easy">Easy</SelectItem>
+                  <SelectItem value="medium">Medium</SelectItem>
+                  <SelectItem value="hard">Hard</SelectItem>
+                </SelectContent>
+              </Select>
+              <Select value={platformFilter} onValueChange={setPlatformFilter}>
+                <SelectTrigger className="md:w-[180px]">
+                  <SelectValue placeholder="All Platforms" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="">All Platforms</SelectItem>
+                  <SelectItem value="leetcode">LeetCode</SelectItem>
+                  <SelectItem value="hackerrank">HackerRank</SelectItem>
+                  <SelectItem value="codewars">CodeWars</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </CardContent>
         </Card>

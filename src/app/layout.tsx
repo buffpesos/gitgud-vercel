@@ -9,6 +9,7 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 import "./globals.css";
 
@@ -68,20 +69,18 @@ export default function RootLayout({
                 <div className="flex items-center space-x-4">
                   <SignedOut>
                     <SignInButton>
-                      <button className="px-4 py-2 text-sm font-medium transition-all duration-200 hover:text-primary text-foreground/70 rounded-lg hover:bg-accent/50">
+                      <Button variant="ghost" size="sm">
                         Sign In
-                      </button>
+                      </Button>
                     </SignInButton>
                     <SignUpButton>
-                      <button className="inline-flex items-center justify-center rounded-xl text-sm font-semibold transition-all duration-200 bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 h-10 px-6 shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98] border border-primary/20">
+                      <Button size="sm">
                         Sign Up
-                      </button>
+                      </Button>
                     </SignUpButton>
                   </SignedOut>
                   <SignedIn>
-                    <div className="p-1 rounded-xl bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20">
-                      <UserButton />
-                    </div>
+                    <UserButton />
                   </SignedIn>
                 </div>
               </div>

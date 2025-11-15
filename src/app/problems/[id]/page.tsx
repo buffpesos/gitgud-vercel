@@ -166,52 +166,52 @@ export default function ProblemDetailPage() {
     }
   };
 
-  const getDifficultyColor = (difficulty: string) => {
+  const getDifficultyVariant = (difficulty: string): "default" | "secondary" | "destructive" | "outline" => {
     switch (difficulty) {
       case "easy":
-        return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300";
+        return "default";
       case "medium":
-        return "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300";
+        return "secondary";
       case "hard":
-        return "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300";
+        return "destructive";
       default:
-        return "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300";
+        return "outline";
     }
   };
 
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "solved":
-        return <CheckCircle2 className="h-4 w-4 text-green-600" />;
+        return <CheckCircle2 className="h-4 w-4" />;
       case "partial":
-        return <AlertCircle className="h-4 w-4 text-yellow-600" />;
+        return <AlertCircle className="h-4 w-4" />;
       case "failed":
-        return <XCircle className="h-4 w-4 text-red-600" />;
+        return <XCircle className="h-4 w-4" />;
       default:
         return null;
     }
   };
 
-  const getStatusColor = (status: string) => {
+  const getStatusVariant = (status: string): "default" | "secondary" | "destructive" | "outline" => {
     switch (status) {
       case "solved":
-        return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300";
+        return "default";
       case "partial":
-        return "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300";
+        return "secondary";
       case "failed":
-        return "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300";
+        return "destructive";
       default:
-        return "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300";
+        return "outline";
     }
   };
 
   if (loading) {
     return (
       <div className="flex-1 space-y-4 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 rounded mb-4"></div>
-          <div className="h-32 bg-gray-200 rounded mb-4"></div>
-          <div className="h-64 bg-gray-200 rounded"></div>
+        <div className="animate-pulse space-y-4">
+          <div className="h-8 bg-muted rounded"></div>
+          <div className="h-32 bg-muted rounded"></div>
+          <div className="h-64 bg-muted rounded"></div>
         </div>
       </div>
     );
@@ -260,7 +260,7 @@ export default function ProblemDetailPage() {
             </Button>
             <h1 className="text-3xl font-bold tracking-tight">{problem.title}</h1>
             <div className="flex items-center gap-2">
-              <Badge className={getDifficultyColor(problem.difficulty)}>
+              <Badge variant={getDifficultyVariant(problem.difficulty)}>
                 {problem.difficulty.charAt(0).toUpperCase() + problem.difficulty.slice(1)}
               </Badge>
               {problem.url && (
@@ -373,7 +373,7 @@ export default function ProblemDetailPage() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         {getStatusIcon(attempt.status)}
-                        <Badge className={getStatusColor(attempt.status)}>
+                        <Badge variant={getStatusVariant(attempt.status)}>
                           {attempt.status.charAt(0).toUpperCase() + attempt.status.slice(1)}
                         </Badge>
                         {attempt.timeTaken && (

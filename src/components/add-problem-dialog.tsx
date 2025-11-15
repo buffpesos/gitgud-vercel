@@ -144,11 +144,11 @@ export function AddProblemDialog({ children }: AddProblemDialogProps) {
                 setUrlError("");
               }}
               required
-              className={urlError ? "border-red-500" : ""}
+              className={urlError ? "border-destructive" : ""}
             />
             {urlError ? (
               <div className="space-y-2">
-                <p className="text-sm text-red-600">{urlError}</p>
+                <p className="text-sm text-destructive">{urlError}</p>
                 {urlError.includes("already have a problem") && (
                   <Button
                     type="button"
