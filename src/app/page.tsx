@@ -1,5 +1,7 @@
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import { Plus, BookOpen, Trophy, Clock, Code, Zap } from "lucide-react";
+
+const isClerkConfigured = !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,6 +10,39 @@ import { DashboardStats } from "@/components/dashboard-stats";
 
 
 export default function Home() {
+  if (!isClerkConfigured) {
+    return (
+      <div className="flex-1 space-y-4 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="flex flex-col items-center justify-center min-h-[calc(100vh-200px)] text-center space-y-8">
+          <div className="space-y-6">
+            <div className="flex items-center justify-center space-x-3 mb-6">
+              <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-primary via-primary/90 to-primary/80 flex items-center justify-center shadow-2xl border border-primary/20">
+                <Code className="h-8 w-8 text-primary-foreground" />
+              </div>
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent">
+                SkillIssue.dev
+              </h1>
+            </div>
+            <h2 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl/none">
+              Master Coding
+              <br />
+              <span className="bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent">
+                Interviews
+              </span>
+            </h2>
+            <p className="mx-auto max-w-[700px] text-muted-foreground text-xl md:text-2xl leading-relaxed">
+              Your personal coding interview journal. Track problems, document solutions,
+              and measure your progress with precision analytics.
+            </p>
+            <div className="text-lg text-muted-foreground">
+              Authentication not configured. Please set up Clerk environment variables to use this application.
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex-1 space-y-4 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
       <SignedOut>

@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import { ArrowLeft, Plus, ExternalLink, Clock, Calendar, CheckCircle2, XCircle, AlertCircle, Trash2 } from "lucide-react";
+
+const isClerkConfigured = !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -228,6 +230,23 @@ export default function ProblemDetailPage() {
           <Button asChild className="mt-4">
             <Link href="/problems">Back to Problems</Link>
           </Button>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isClerkConfigured) {
+    return (
+      <div className="flex-1 space-y-4 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="flex flex-col items-center justify-center min-h-[calc(100vh-200px)] text-center space-y-4">
+          <div className="space-y-2">
+            <h1 className="text-3xl font-bold tracking-tighter">
+              Authentication not configured
+            </h1>
+            <p className="text-muted-foreground">
+              Please configure Clerk environment variables to use this feature.
+            </p>
+          </div>
         </div>
       </div>
     );

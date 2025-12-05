@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
+
+const isClerkConfigured = !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 import { Plus, BookOpen, Search, ExternalLink, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -101,6 +103,23 @@ export default function ProblemsPage() {
     
     return matchesSearch && matchesDifficulty && matchesPlatform;
   });
+  if (!isClerkConfigured) {
+    return (
+      <div className="flex-1 space-y-4 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="flex flex-col items-center justify-center min-h-[calc(100vh-200px)] text-center space-y-4">
+          <div className="space-y-2">
+            <h1 className="text-3xl font-bold tracking-tighter">
+              Authentication not configured
+            </h1>
+            <p className="text-muted-foreground">
+              Please configure Clerk environment variables to use this feature.
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex-1 space-y-4 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
       <SignedOut>
