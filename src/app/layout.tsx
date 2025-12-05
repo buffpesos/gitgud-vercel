@@ -23,7 +23,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GitGud - Coding Interview Journal",
+  title: "SkillIssue.dev - Coding Interview Journal",
   description: "Track your coding interview preparation with brutal honesty",
 };
 
@@ -46,7 +46,7 @@ export default function RootLayout({
                     <div className="h-8 w-8 rounded bg-foreground flex items-center justify-center">
                       <Code className="h-4 w-4 text-background" />
                     </div>
-                    <span className="font-bold text-xl">GitGud</span>
+                    <span className="font-bold text-xl">SkillIssue.dev</span>
                   </Link>
                   <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
                     <SignedIn>

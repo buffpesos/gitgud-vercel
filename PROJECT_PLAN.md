@@ -183,7 +183,7 @@ NEXT_PUBLIC_APP_URL=http://localhost:3000
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_live_prod_...
 CLERK_SECRET_KEY=sk_live_prod_...
 DATABASE_URL=postgresql://prod_user:password@prod-db.neon.tech/prod_db
-NEXT_PUBLIC_APP_URL=https://your-app.vercel.app
+NEXT_PUBLIC_APP_URL=https://skillissue.dev
 ```
 
 ## 🛠️ Development Workflow

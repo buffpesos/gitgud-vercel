@@ -48,7 +48,7 @@ Deploy GitGud on existing Dokploy VPS with self-hosted database, running in Dock
 ### Tunnel Configuration
 - **Cloudflared Container**: Separate container running cloudflared daemon
 - **Network Communication**: Docker network for service-to-tunnel communication
-- **Domain Setup**: Subdomain for Dokploy deployment (e.g., `dokploy.gitgud.app`)
+- **Domain Setup**: Subdomain for Dokploy deployment (e.g., `dokploy.skillissue.dev`)
 - **SSL/TLS**: Automatic HTTPS via Cloudflare
 
 ### Dokploy Template Usage
@@ -107,10 +107,10 @@ Internet → Cloudflare → Tunnel → Dokploy VPS → GitGud Container
 npm run db:migrate  # Apply schema to new PostgreSQL
 
 # 2. Export from Neon
-pg_dump $NEON_DATABASE_URL --data-only > gitgud_data.sql
+pg_dump $NEON_DATABASE_URL --data-only > skillissue_data.sql
 
 # 3. Import to self-hosted
-psql $LOCAL_DATABASE_URL < gitgud_data.sql
+psql $LOCAL_DATABASE_URL < skillissue_data.sql
 ```
 
 ### Strategy B: Application-Level Migration

@@ -16,9 +16,9 @@
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd gitgud-vercel
-   ```
+    git clone <repository-url>
+    cd skillissue-dev
+    ```
 
 2. **Install dependencies**
    ```bash

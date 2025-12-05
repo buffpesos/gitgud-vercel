@@ -1,8 +1,8 @@
-# GitGud - Coding Interview Journal
+# SkillIssue.dev - Coding Interview Journal
 
 > Track your coding interview preparation with brutal honesty
 
-GitGud is a personal coding journal application that helps software engineers systematically track their interview preparation by logging coding problems and practice attempts. Built with modern serverless technologies for scalability and developer experience.
+SkillIssue.dev is a personal coding journal application that helps software engineers systematically track their interview preparation by logging coding problems and practice attempts. Built with modern serverless technologies for scalability and developer experience.
 
 ## 🚀 Features
 
@@ -57,10 +57,10 @@ NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
 
 1. **Clone and install dependencies**
    ```bash
-   git clone <repository-url>
-   cd gitgud-vercel
-   npm install
-   ```
+    git clone <repository-url>
+    cd skillissue-dev
+    npm install
+    ```
 
 2. **Set up the database**
    ```bash
@@ -122,7 +122,7 @@ See [docs/database.md](docs/database.md) for detailed schema documentation.
 
 ## 🔐 Authentication Flow
 
-GitGud uses Clerk for authentication with the following integration points:
+SkillIssue.dev uses Clerk for authentication with the following integration points:
 
 1. **Middleware**: `clerkMiddleware()` protects all routes
 2. **API Authentication**: `auth()` extracts user ID from session

@@ -20,7 +20,7 @@ export default function Home() {
                   <Code className="h-6 w-6 text-background" />
                 </div>
                 <h1 className="text-3xl font-bold text-foreground">
-                  GitGud
+                  SkillIssue.dev
                 </h1>
               </div>
               <h2 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl/none text-foreground">
@@ -37,7 +37,7 @@ export default function Home() {
             </div>
             <div className="max-w-[800px] mx-auto space-y-6">
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Turn your coding practice into real progress. Our platform helps you track your practice sessions so you can learn from your mistakes. Because the difference between developers who land their dream jobs and those who don&apos;t isn&apos;t just talent—it&apos;s the discipline to learn from every mistake, understand every solution, and never stumble on the same problem twice. It&apos;s time to just GitGud.
+                Turn your coding practice into real progress. Our platform helps you track your practice sessions so you can learn from your mistakes. Because the difference between developers who land their dream jobs and those who don&apos;t isn&apos;t just talent—it&apos;s the discipline to learn from every mistake, understand every solution, and never stumble on the same problem twice. It&apos;s time to level up your skills.
               </p>
               <SignInButton>
                 <Button size="lg" className="text-lg px-8 py-6 bg-foreground text-background hover:bg-foreground/90">
