@@ -9,7 +9,7 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import Link from "next/link";
-import { Code } from "lucide-react";
+
 import "./globals.css";
 
 const geistSans = Geist({
@@ -38,27 +38,27 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-background text-foreground`}
         >
-          <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+          <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex h-16 items-center justify-between">
                 <div className="flex items-center space-x-8">
-                  <Link href="/" className="flex items-center space-x-2">
-                    <div className="h-8 w-8 rounded bg-foreground flex items-center justify-center">
-                      <Code className="h-4 w-4 text-background" />
+                  <Link href="/" className="flex items-center space-x-2 group">
+                    <div className="h-8 w-8 rounded-xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-200 group-hover:scale-105">
+                      <span className="text-primary-foreground font-bold text-sm">G</span>
                     </div>
-                    <span className="font-bold text-xl">SkillIssue.dev</span>
+                    <span className="font-bold text-xl bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">SkillIssue.dev</span>
                   </Link>
-                  <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
+                  <nav className="hidden md:flex items-center space-x-1 text-sm font-medium">
                     <SignedIn>
                       <Link
                         href="/"
-                        className="transition-colors hover:text-foreground text-muted-foreground"
+                        className="px-4 py-2 rounded-lg transition-all duration-200 hover:bg-accent/80 hover:text-accent-foreground text-foreground/70 hover:text-foreground"
                       >
                         Dashboard
                       </Link>
                       <Link
                         href="/problems"
-                        className="transition-colors hover:text-foreground text-muted-foreground"
+                        className="px-4 py-2 rounded-lg transition-all duration-200 hover:bg-accent/80 hover:text-accent-foreground text-foreground/70 hover:text-foreground"
                       >
                         Problems
                       </Link>
@@ -68,18 +68,20 @@ export default function RootLayout({
                 <div className="flex items-center space-x-4">
                   <SignedOut>
                     <SignInButton>
-                      <button className="text-sm font-medium transition-colors hover:text-foreground text-muted-foreground">
+                      <button className="px-4 py-2 text-sm font-medium transition-all duration-200 hover:text-primary text-foreground/70 rounded-lg hover:bg-accent/50">
                         Sign In
                       </button>
                     </SignInButton>
                     <SignUpButton>
-                      <button className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-4">
+                      <button className="inline-flex items-center justify-center rounded-xl text-sm font-semibold transition-all duration-200 bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:from-primary/90 hover:to-primary/80 h-10 px-6 shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98] border border-primary/20">
                         Sign Up
                       </button>
                     </SignUpButton>
                   </SignedOut>
                   <SignedIn>
-                    <UserButton />
+                    <div className="p-1 rounded-xl bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20">
+                      <UserButton />
+                    </div>
                   </SignedIn>
                 </div>
               </div>

@@ -27,6 +27,9 @@ type Problem = {
 export default function ProblemsPage() {
   const [problems, setProblems] = useState<Problem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [difficultyFilter, setDifficultyFilter] = useState("");
+  const [platformFilter, setPlatformFilter] = useState("");
 
   useEffect(() => {
     uiLogger.debug("ProblemsPage component mounted, fetching problems");
@@ -86,6 +89,18 @@ export default function ProblemsPage() {
         return "outline";
     }
   };
+
+  const filteredProblems = problems.filter((problem) => {
+    const matchesSearch = searchTerm === "" || 
+      problem.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (problem.description?.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (problem.tags?.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase())));
+    
+    const matchesDifficulty = difficultyFilter === "" || problem.difficulty === difficultyFilter;
+    const matchesPlatform = platformFilter === "" || problem.platform.toLowerCase() === platformFilter.toLowerCase();
+    
+    return matchesSearch && matchesDifficulty && matchesPlatform;
+  });
   return (
     <div className="flex-1 space-y-4 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
       <SignedOut>
@@ -102,37 +117,51 @@ export default function ProblemsPage() {
       </SignedOut>
 
       <SignedIn>
-        <div className="flex items-center justify-between space-y-2">
+        <div className="flex items-center justify-between">
           <h2 className="text-3xl font-bold tracking-tight">Problems</h2>
-          <div className="flex items-center space-x-2">
-            <AddProblemDialog>
-              <Button>
-                <Plus className="mr-2 h-4 w-4" />
-                Add Problem
-              </Button>
-            </AddProblemDialog>
-          </div>
+          <AddProblemDialog>
+            <Button>
+              <Plus className="mr-2 h-4 w-4" />
+              Add Problem
+            </Button>
+          </AddProblemDialog>
         </div>
 
         {/* Search and Filter */}
-        <Card>
+        <Card className="border border-border/50 shadow-sm">
           <CardHeader>
-            <CardTitle>Search & Filter</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              <Search className="h-4 w-4 text-primary" />
+              Search & Filter
+            </CardTitle>
             <CardDescription>Find problems in your collection</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex flex-col md:flex-row gap-4">
               <div className="flex-1 relative">
-                <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-                <Input placeholder="Search problems..." className="pl-8" />
+                <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                <Input 
+                  placeholder="Search problems..." 
+                  className="pl-10" 
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
               </div>
-              <select className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:w-[180px]">
+              <select 
+                className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:w-[180px]"
+                value={difficultyFilter}
+                onChange={(e) => setDifficultyFilter(e.target.value)}
+              >
                 <option value="">All Difficulties</option>
                 <option value="easy">Easy</option>
                 <option value="medium">Medium</option>
                 <option value="hard">Hard</option>
               </select>
-              <select className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:w-[180px]">
+              <select 
+                className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:w-[180px]"
+                value={platformFilter}
+                onChange={(e) => setPlatformFilter(e.target.value)}
+              >
                 <option value="">All Platforms</option>
                 <option value="leetcode">LeetCode</option>
                 <option value="hackerrank">HackerRank</option>
@@ -149,6 +178,23 @@ export default function ProblemsPage() {
               <div className="text-center space-y-2">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
                 <p className="text-sm text-muted-foreground">Loading problems...</p>
+              </div>
+            </CardContent>
+          </Card>
+        ) : filteredProblems.length === 0 && problems.length > 0 ? (
+          <Card>
+            <CardContent className="flex items-center justify-center py-12">
+              <div className="text-center space-y-4">
+                <Search className="h-16 w-16 text-muted-foreground mx-auto" />
+                <div className="space-y-2">
+                  <h3 className="text-lg font-semibold">No problems found</h3>
+                  <p className="text-sm text-muted-foreground max-w-sm mx-auto">
+                    Try adjusting your search terms or filters to find what you&apos;re looking for.
+                  </p>
+                </div>
+                <Button onClick={() => { setSearchTerm(""); setDifficultyFilter(""); setPlatformFilter(""); }} variant="outline">
+                  Clear Filters
+                </Button>
               </div>
             </CardContent>
           </Card>
@@ -174,8 +220,8 @@ export default function ProblemsPage() {
           </Card>
         ) : (
           <div className="grid gap-4">
-            {problems.map((problem) => (
-              <Card key={problem.id} className="hover:shadow-md transition-shadow">
+            {filteredProblems.map((problem) => (
+              <Card key={problem.id} className="border border-border/50 shadow-sm hover:shadow-md hover:border-border transition-all duration-200">
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between">
                     <div className="flex-1 space-y-3">
@@ -190,31 +236,31 @@ export default function ProblemsPage() {
                             href={problem.url} 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="hover:underline flex items-center gap-1 text-sm text-muted-foreground"
+                            className="hover:text-primary transition-colors flex items-center gap-1 text-sm text-muted-foreground p-2 rounded-lg hover:bg-accent/50"
                           >
                             <ExternalLink className="h-4 w-4" />
                           </a>
                         )}
-                        <Badge variant={getDifficultyVariant(problem.difficulty) as "default" | "secondary" | "destructive" | "outline"}>
+                        <Badge variant={getDifficultyVariant(problem.difficulty) as "default" | "secondary" | "destructive" | "outline"} className="px-3 py-1 text-xs font-semibold">
                           {problem.difficulty}
                         </Badge>
                       </div>
                       
                       {problem.description && (
-                        <p className="text-sm text-muted-foreground">{problem.description}</p>
+                        <p className="text-muted-foreground leading-relaxed">{problem.description}</p>
                       )}
                       
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-6 text-sm text-muted-foreground">
                         {problem.tags && problem.tags.length > 0 && (
-                          <div className="flex gap-1">
+                          <div className="flex gap-2">
                             {problem.tags.map((tag, index) => (
-                              <Badge key={index} variant="outline" className="text-xs">
+                              <Badge key={index} variant="outline" className="text-xs px-2 py-1">
                                 {tag}
                               </Badge>
                             ))}
                           </div>
                         )}
-                        <span>{new Date(problem.createdAt).toLocaleDateString()}</span>
+                        <span className="font-medium">{new Date(problem.createdAt).toLocaleDateString()}</span>
                       </div>
                     </div>
                     

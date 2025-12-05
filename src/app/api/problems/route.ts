@@ -61,7 +61,6 @@ export async function POST(request: NextRequest) {
     // Normalize the URL to handle trailing slashes and other variations
     const normalizedUrl = normalizeUrl(url);
     apiLogger.debug("URL normalized");
-
     // Check if problem with this URL already exists for this user
     apiLogger.debug("Checking for existing problems");
     const allUserProblems = await db
@@ -111,6 +110,7 @@ export async function POST(request: NextRequest) {
       : [];
     apiLogger.debug("Tags processed", { tagCount: processedTags.length });
 
+    
     // Create the problem
     apiLogger.debug("Creating new problem");
     const [newProblem] = await db
